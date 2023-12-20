@@ -3,6 +3,10 @@ import { getAbilities, getBootlegSpell, getItems, getRandoSpell, getStartingStat
 import { PERMANENT_SPELLS } from './constants';
 import type { Item } from './constants';
 
+type InfoBoxes = {
+    [key: string]: Item[];
+}
+
 const Info = ({ className = '', title = '', items, id }: { className?:string; title?: string; items: Item[]; id: string }) => {
     const listItems = items.map((item) => {
         const { name, description } = item;
@@ -23,40 +27,53 @@ const Info = ({ className = '', title = '', items, id }: { className?:string; ti
     );
 };
 
-const InfoBoxes = () => {
-    const [abilities] = useState(getAbilities());
-    const [items] = useState(getItems());
-    const [randoSpell] = useState([getRandoSpell()]);
-    const [bootlegSpell] = useState([getBootlegSpell()]);
-
+const InfoBoxes = ({ abilities, permSpells = PERMANENT_SPELLS, items, randoSpells, bootlegSpells }: InfoBoxes) => {
     return (
         <div id='sections'>
             <Info className='info-div' title='Abilities' id='ability-scores' items={abilities} />
-            <Info className='info-div' title='Permamnent Spells' id='perm-spells' items={PERMANENT_SPELLS} />
+            <Info className='info-div' title='Permanent Spells' id='perm-spells' items={permSpells} />
             <Info className='info-div' title='Items' id='items' items={items} />
-            <Info className='info-div' title='Rando Spell' id='rando-spell' items={randoSpell} />
-            <Info className='info-div' title='Bootleg Spell' id='bootleg-spell' items={bootlegSpell} />
+            <Info className='info-div' title='Rando Spell' id='rando-spell' items={randoSpells} />
+            <Info className='info-div' title='Bootleg Spell' id='bootleg-spell' items={bootlegSpells} />
         </div>
     );
 };
 
 const App = () => {
-    const [startingStats] = useState(getStartingStats());
+    const [startingStats, setStartingStats] = useState(getStartingStats());
+    const [abilities, setAbilities] = useState(getAbilities());
+    const [items, setItems] = useState(getItems());
+    const [randoSpells, setRandoSpells] = useState([getRandoSpell()]);
+    const [bootlegSpells, setBootlegSpells] = useState([getBootlegSpell()]);
 
+    const bailOut = () => {
+        setStartingStats(getStartingStats());
+        setAbilities(getAbilities());
+        setItems(getItems());
+        setRandoSpells([getRandoSpell()]);
+        setBootlegSpells([getBootlegSpell()]);
+        setBorders();
+    }
+    
     window.addEventListener('resize', () => {
         setBorders();
     })
     
     useEffect(() => {
         setBorders();
-    });
+    }, []);
 
     return (
         <>
             <h1>A Skate Wizards Generator</h1>
-            <button id='roll-btn'>Bail out!</button>
+            <button id='roll-btn' onClick={bailOut}>Bail out!</button>
             <Info id='stats-bar' items={startingStats} />
-            <InfoBoxes />
+            <InfoBoxes 
+                abilities={abilities}
+                items={items}
+                randoSpells={randoSpells}
+                bootlegSpells={bootlegSpells}
+            />
         </>
     );
 };
