@@ -5,9 +5,19 @@ import type { Item } from './constants';
 
 type InfoBoxes = {
     [key: string]: Item[];
-}
+};
 
-const Info = ({ className = '', title = '', items, id }: { className?:string; title?: string; items: Item[]; id: string }) => {
+const Info = ({
+    className = '',
+    title = '',
+    items,
+    id
+}: {
+    className?: string;
+    title?: string;
+    items: Item[];
+    id: string;
+}) => {
     const listItems = items.map((item) => {
         const { name, description } = item;
 
@@ -53,12 +63,12 @@ const App = () => {
         setRandoSpells([getRandoSpell()]);
         setBootlegSpells([getBootlegSpell()]);
         setBorders();
-    }
-    
+    };
+
     window.addEventListener('resize', () => {
         setBorders();
-    })
-    
+    });
+
     useEffect(() => {
         setBorders();
     }, []);
@@ -66,14 +76,11 @@ const App = () => {
     return (
         <>
             <h1>A Skate Wizards Generator</h1>
-            <button id='roll-btn' onClick={bailOut}>Bail out!</button>
+            <button id='roll-btn' onClick={bailOut}>
+                Bail out!
+            </button>
             <Info id='stats-bar' items={startingStats} />
-            <InfoBoxes 
-                abilities={abilities}
-                items={items}
-                randoSpells={randoSpells}
-                bootlegSpells={bootlegSpells}
-            />
+            <InfoBoxes abilities={abilities} items={items} randoSpells={randoSpells} bootlegSpells={bootlegSpells} />
         </>
     );
 };

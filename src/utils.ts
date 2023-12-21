@@ -22,28 +22,29 @@ export const getAbilities = (): Item[] => {
 
         switch (idx) {
             case 0: {
-                name = 'Strength'
+                name = 'Strength';
                 break;
             }
 
             case 1: {
-                name = 'Dexterity'
+                name = 'Dexterity';
                 break;
             }
 
             case 2: {
-                name = 'Will'
+                name = 'Will';
                 break;
             }
         }
 
         return {
-            name, description: `${score}`
-        }
+            name,
+            description: `${score}`
+        };
     });
 };
 
-export const getItems = (): Item[]  => {
+export const getItems = (): Item[] => {
     const selectedItems: Item[] = [];
 
     while (selectedItems.length < 3) {
@@ -62,7 +63,7 @@ export const getRandoSpell = (): Item => {
 
     return {
         name
-    }
+    };
 };
 
 export const getBootlegSpell = (): Item => {
@@ -74,9 +75,9 @@ export const getStartingStats = (): Item[] => {
         return {
             name: stat,
             description: `${value}`
-        }
+        };
     });
-}
+};
 
 const isOnTop = (div1?: HTMLDivElement | null, div2?: HTMLDivElement | null): boolean => {
     if (!(div1 && div2)) {
@@ -90,28 +91,33 @@ const isToTheLeft = (div1: HTMLDivElement | null, div2: HTMLDivElement | null): 
     if (!(div1 && div2)) {
         return false;
     }
-    
+
     return Math.floor(div1.getBoundingClientRect().right) <= Math.floor(div2.getBoundingClientRect().left);
 };
 
 export const setBorders = () => {
-    const divs: (HTMLDivElement | null)[] = ['ability-scores', 'perm-spells', 'items', 'rando-spell', 'bootleg-spell'].map(id => document.querySelector(`#${id}`));
+    const divs: (HTMLDivElement | null)[] = [
+        'ability-scores',
+        'perm-spells',
+        'items',
+        'rando-spell',
+        'bootleg-spell'
+    ].map((id) => document.querySelector(`#${id}`));
 
     divs.forEach((div) => {
-        const otherDivs = divs.filter(divEl => divEl?.id !== div?.id);
+        const otherDivs = divs.filter((divEl) => divEl?.id !== div?.id);
 
         if (div) {
             div.classList.remove('bottom-border');
             div.classList.remove('right-border');
-    
-            if (otherDivs.some(otherDiv => isOnTop(div, otherDiv))) {
+
+            if (otherDivs.some((otherDiv) => isOnTop(div, otherDiv))) {
                 div.classList.add('bottom-border');
             }
-    
-            if (otherDivs.some(otherDiv => isToTheLeft(div, otherDiv))) {
+
+            if (otherDivs.some((otherDiv) => isToTheLeft(div, otherDiv))) {
                 div.classList.add('right-border');
             }
         }
     });
 };
-
