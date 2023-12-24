@@ -52,6 +52,11 @@ ul {
     margin: 0px;
 }
 
+#level-li > button {
+    margin-left: 5px;
+    margin-right: 5px;
+}
+
 #stats-bar > ul {
     display: flex;
     flex-direction: row;
@@ -101,6 +106,8 @@ ul {
     max-width: 100px;
 }
 
+#ability-scores 
+
 #perm-spells li {
     display: flex;
     flex-direction: column;
@@ -118,4 +125,18 @@ ul {
     width: fit-content;
     place-self: center;
     font-size: medium;
+}
+
+#rando-spell h2 {
+    display: flex;
+    flex-direction: row;
+    place-items: center;
+}
+
+#rando-spell button {
+    margin-left: 5px;
+}
+
+#attack-bonus-li button {
+    margin-left: 5px;
 }

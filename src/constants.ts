@@ -1,4 +1,5 @@
 export type Item = {
+    uuid?: string;
     name: string;
     description?: string;
 };
@@ -85,7 +86,7 @@ export const PERMANENT_SPELLS: Item[] = [
 ];
 
 export const STARTING_STATS = {
-    HP: 4,
-    Defense: 6,
-    'Attack Bonus': 0
+    hp: 4,
+    defense: 6,
+    attackBonus: 0
 };
