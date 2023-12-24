@@ -106,7 +106,9 @@ ul {
     max-width: 100px;
 }
 
-#ability-scores 
+#ability-scores button {
+    margin-left: 5px;
+}
 
 #perm-spells li {
     display: flex;

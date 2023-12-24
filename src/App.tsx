@@ -258,8 +258,9 @@ const App = (): JSX.Element => {
     statusByLevel.set(level, status);
 
     const bailOut = (): void => {
-        updateStatus(getInitialStatus());
-        setNewLevel(status.level);
+        const initialStatus = getInitialStatus();
+        updateStatus(initialStatus);
+        setNewLevel(initialStatus.level);
         setBorders();
     };
 
@@ -281,11 +282,8 @@ const App = (): JSX.Element => {
             }
         }
 
-        console.log('level: ', level);
-        console.log('newLevel: ', newLevel);
-        console.log('status: ', status);
         setBorders();
-    }, [level, newLevel, status]);
+    });
 
     return (
         <>
