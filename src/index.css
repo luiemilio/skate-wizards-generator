@@ -19,7 +19,10 @@ body {
     max-width: 1356px;
     min-width: 320px;
     margin: 0 auto;
-    padding: 2rem;
+}
+
+button {
+    min-width: 20px;
 }
 
 #root {
@@ -40,29 +43,45 @@ h2 {
 }
 
 ul {
+    padding: 0px;
     list-style: none;
 }
 
 #stats-bar {
     display: flex;
-    flex-direction: row;
     border-top: 2px solid #333a3f;
     border-bottom: 2px solid #333a3f;
     padding: 0px;
     margin: 0px;
 }
 
-#level-li > button {
-    margin-left: 5px;
-    margin-right: 5px;
-}
-
 #stats-bar > ul {
     display: flex;
-    flex-direction: row;
     place-items: center;
     justify-content: space-evenly;
     width: 100%;
+}
+
+#stats-bar li {
+    margin-left: 5px;
+}
+
+#attack-bonus-li {
+    display: flex;
+    min-width: 145px;
+}
+
+#attack-bonus-li button {
+    margin-left: 5px;
+}
+
+#level-li {
+    display: flex;
+}
+
+#level-li > button {
+    margin-left: 5px;
+    margin-right: 5px;
 }
 
 .info-div {
@@ -95,19 +114,26 @@ ul {
 .key-span {
     font-weight: bold;
     margin-right: 10px;
+    min-width: 70px;
 }
 
 #ability-scores li {
     display: flex;
-    flex-direction: row;
     padding: 0px;
     justify-content: space-between;
     margin-right: 5px;
-    max-width: 100px;
+    min-width: 125px;
+    max-width: 125px;
 }
 
 #ability-scores button {
     margin-left: 5px;
+}
+
+#ability-spans {
+    display: flex;
+    justify-content: space-between;
+    min-width: 80px;
 }
 
 #perm-spells li {
@@ -131,14 +157,9 @@ ul {
 
 #rando-spell h2 {
     display: flex;
-    flex-direction: row;
     place-items: center;
 }
 
 #rando-spell button {
-    margin-left: 5px;
-}
-
-#attack-bonus-li button {
     margin-left: 5px;
 }

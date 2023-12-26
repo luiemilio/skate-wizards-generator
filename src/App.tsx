@@ -23,12 +23,12 @@ type InfoBoxes = {
     updateStatus: (status: Status) => void;
 };
 
-const InfoSpans = ({ name, description }: Item): JSX.Element => {
+const InfoSpans = ({ name, description, id }: Item & { id?: string }): JSX.Element => {
     return (
-        <>
-            <span className='key-span'>{name}</span>
+        <div id={id}>
+            <span id={id} className='key-span'>{name}</span>
             <span>{description}</span>
-        </>
+        </div>
     );
 };
 
@@ -106,7 +106,7 @@ const StatusBar = ({
                     <button onClick={levelButtonClicked} id='level-down' disabled={level !== newLevel}>
                         -
                     </button>
-                    <InfoSpans name={name} description={`${newLevel}`} />
+                    <InfoSpans name={name} description={`${newLevel}`} id='level'/>
                     <button onClick={levelButtonClicked} id='level-up' disabled={level !== newLevel}>
                         +
                     </button>
@@ -115,7 +115,7 @@ const StatusBar = ({
         } else if (name === 'Attack Bonus') {
             return (
                 <li key={generateRandomKey()} id='attack-bonus-li'>
-                    <InfoSpans name={name} description={description} />
+                    <InfoSpans name={name} description={description}/>
                     {newLevel > level && newLevel % 2 !== 0 && (
                         <button onClick={attackBonusButtonClicked} id='level-up'>
                             +
@@ -162,7 +162,7 @@ const AbilityScoresInfoBox = ({
 
         return (
             <li key={generateRandomKey()}>
-                <InfoSpans name={name} description={description} />
+                <InfoSpans name={name} description={description} id='ability-spans'/>
                 {newLevel > level && newLevel % 2 === 0 && (
                     <button onClick={buttonClicked} id={`${name.toLowerCase()}`}>
                         +
