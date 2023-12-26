@@ -9,7 +9,7 @@
         "lint": "eslint . --ext ts,tsx --report-unused-disable-directives --max-warnings 0",
         "preview": "vite preview",
         "predeploy": "npm run build & npm run add-domain",
-        "deploy": "gh-pages -d dist",
+        "deploy": "gh-pages -d dist --repo https://github.com/luiemilio/skate-wizards-generator.git",
         "add-domain": "echo skatewiz.bitvoid.dev > dist/CNAME"
     },
     "dependencies": {
